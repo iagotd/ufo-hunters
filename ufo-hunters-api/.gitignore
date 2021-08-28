@@ -1,0 +1,5 @@
+HELP.md
+target/
+.mvn
+ufo-hunters-api.iml
+.idea
