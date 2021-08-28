@@ -37,7 +37,7 @@ class MemoryUFOSightingRepositoryTest {
                 .setLatitude(new Latitude(41.38))
                 .setLongitude(new Longitude(2.17))
                 .setSightingDateTime(SIGHTING_DATE_TIME)
-                .setComment("It was green and pear shaped!")
+                .setContact("It was green and pear shaped!")
                 .build();
 
         ufoSightingRepository.save(ufoSighting);
