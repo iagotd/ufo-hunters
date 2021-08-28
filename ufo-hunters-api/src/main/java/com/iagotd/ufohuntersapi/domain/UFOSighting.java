@@ -6,12 +6,12 @@ public class UFOSighting {
     private Latitude latitude;
     private Longitude longitude;
     private LocalDateTime sightingDateTime;
-    private String comment;
+    private String contact;
 
-    public UFOSighting(Latitude latitude, Longitude longitude, LocalDateTime sightingDateTime, String comment) {
+    public UFOSighting(Latitude latitude, Longitude longitude, LocalDateTime sightingDateTime, String contact) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.sightingDateTime = sightingDateTime;
-        this.comment = comment;
+        this.contact = contact;
     }
 }

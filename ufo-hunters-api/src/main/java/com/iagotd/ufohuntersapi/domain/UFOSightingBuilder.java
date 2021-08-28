@@ -6,7 +6,7 @@ public class UFOSightingBuilder {
     private Latitude latitude;
     private Longitude longitude;
     private LocalDateTime sightingDateTime;
-    private String comment;
+    private String contact;
 
     public UFOSightingBuilder setLatitude(Latitude latitude) {
         this.latitude = latitude;
@@ -23,12 +23,12 @@ public class UFOSightingBuilder {
         return this;
     }
 
-    public UFOSightingBuilder setComment(String comment) {
-        this.comment = comment;
+    public UFOSightingBuilder setContact(String contact) {
+        this.contact = contact;
         return this;
     }
 
     public UFOSighting build() {
-        return new UFOSighting(latitude, longitude, sightingDateTime, comment);
+        return new UFOSighting(latitude, longitude, sightingDateTime, contact);
     }
 }
