@@ -1,0 +1,45 @@
+version: '3'
+services:
+  zookeeper:
+    image: wurstmeister/zookeeper:latest
+    ports:
+      - "2181:2181"
+
+  kafka:
+    image: wurstmeister/kafka:latest
+    depends_on:
+      - zookeeper
+    ports:
+      - "29092:29092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+  ufo-service:
+    container_name: ufo-hunters-api
+    build:
+      context: ufo-hunters-api
+      dockerfile: Dockerfile
+    image: ufo-hunters-api:latest
+    ports:
+      - "18888:8080"
+    networks:
+      - spring-cloud-network
+
+  cia-ufo-reader:
+    container_name: cia-ufo-reader
+    depends_on:
+      - "kafka"
+    build: cia-ufo-reader/
+    image: cia-ufo-reader:latest
+    ports:
+      - "19999:9999"
+    networks:
+      - spring-cloud-network
+networks:
+  spring-cloud-network:
+    driver: bridge
